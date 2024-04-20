@@ -1,0 +1,18 @@
+.image-admin{
+    height: 180px;
+    width: 180px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-size: cover;
+}
+.content-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.content-info{
+    margin-top: 50px;
+    font-size: large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

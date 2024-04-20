@@ -1,0 +1,59 @@
+.content a{
+    text-decoration: none;
+    font-size: 23px;
+    color: white;
+}
+.content .container .row {
+    background-color: black;
+    text-align: center;
+}
+.customer-content {
+    background-color: white;
+}
+.customer-content a {
+    color: black;
+}
+.content .row {
+    border: 1px solid;
+}
+.content .table a{
+    color: black;
+    font-size: 16px;
+}
+.content .table {
+    margin-top: 20px;
+}
+.product-content:hover {
+    background-color: white;
+}
+.product-content a:hover{
+    color: black;
+}
+.order-content:hover{
+    background-color: white;
+}
+.order-content a:hover{
+    color: black;
+}
+.form .form-input{
+    display: flex;
+}
+.form{
+    margin-top: 20px;
+}
+.form-group .form-input{
+    width: 250px;
+}
+.form-group .image{
+    margin-left: 20px;
+}
+.form-group .error-message{
+    color: red;
+}
+button{
+    margin-top: 10px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}

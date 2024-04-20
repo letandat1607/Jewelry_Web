@@ -1,0 +1,109 @@
+.body{
+    margin-top: 30px;
+}
+a{
+    text-decoration: none;
+}
+header {
+    width: 100%;
+    padding: 0px auto;
+}
+.img-fluid {
+    width: 100px;
+}
+.navbar-logo{
+    display: flex;
+    justify-content: center;
+}
+
+.icon a{
+    font-size: 30px;
+    color: black;
+    width: 100%;
+}
+.icon {
+    display: flex;
+    justify-content: center;
+}
+.navbar-nav .nav-link {
+    color: black;
+    font-weight: 700;
+    font-size: large;
+}
+.toggle-icon {
+    color: black;
+    font-size: 35px;
+}
+.main-menu .navbar-nav-child{
+    display: none;
+}
+.main-menu .icon-down {
+    border: none;
+}
+@media (max-width: 767.5px) {
+    .navbar-nav {
+        background-color: rgb(246, 228, 228);
+    }
+    .navbar-nav .nav-item {
+        margin-left: 35px;
+        font-size: medium;
+        display: block;
+    }
+    .main-menu .navbar-nav-child-items{
+        display: block;
+    }    
+    .main-menu .icon-down {
+        position: absolute;
+        top: 105px;
+        margin-left: 77px;
+        background-color: rgb(246, 228, 228);
+    }
+    .navbar-nav .nav-link:hover{
+        background-color: rgb(248, 218, 218);
+    }
+}
+@media (min-width: 767.5px) {
+    .navbar-nav{
+        margin: 20px auto;
+    }
+    .navbar-nav .nav-item{
+        margin: 0px 30px;
+    }
+    .main-menu .icon-down {
+        position: absolute;
+        top: 35px;
+        margin-left: 80px;
+        background-color: white;
+    }
+    .navbar-nav-child{
+        background-color: rgb(246, 228, 228);
+        list-style: none;
+    }
+    .main-menu .navbar-nav-child {
+        position: absolute;
+        padding: 15px 0px;
+        width: 200px;
+    }
+    .navbar-nav>li>a{
+        position: relative;
+    }
+    .navbar-nav>li>a::before {
+        content: "";
+        height: 4px;
+        width: 100%;
+        left: 0px;
+        background-color: black;
+        position: absolute;
+        margin-top: 30px;
+        display: none;
+    }
+    .navbar-nav>li:hover>a::before{
+        display: block;
+    }
+    .navbar-nav li:hover {
+        .navbar-nav-child{
+            display: block;
+        }
+    }
+    
+}

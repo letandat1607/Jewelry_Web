@@ -1,0 +1,131 @@
+*{
+    box-sizing: border-box;
+}
+#search-container{
+    position: relative;
+}
+#search-icon{
+    font-size: 30px;
+    cursor: pointer;
+}
+#search-form{
+    position: absolute;
+    width:168px;
+    height:40px;
+    left:0px;
+    display: none;
+    border:solid 2px black;
+    border-radius: 5%;
+}
+#search-form input#keyword{
+    outline: none;
+}
+#button{
+    display:none;
+    position: absolute;
+    width:65px;
+    font-size: 11px;
+    height:40px;
+    margin-left:170px;
+    border:solid 2px black;
+    border-radius: 5%;
+    color:hsl(24, 71%, 15%);
+    
+}
+
+
+.menu 
+{
+    position: relative;
+    width:0px;
+    height:0px;
+    left:-32px;
+    list-style: none;
+}
+.menu ul.sub-menu
+{
+    list-style: none;
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0px;
+}
+.menu ul.sub-menu li a
+{
+    text-align: center;
+    font-size: 11px;
+}
+.menu li:hover ul.sub-menu
+{
+    display:block;
+    width:150px;
+    height:auto;
+    background-color: yellow;
+}
+
+.img-fluid
+{
+    margin-top: 24px;
+    width:273px;
+    height:273px;
+    border: solid 1px;
+}
+.img-fluid:hover
+{
+    cursor: pointer ;
+}
+.name-product
+{
+    margin-top:10px;
+    height:34px;
+    text-align: center;
+    color:hsl(24, 71%, 15%);
+    font-size:15.00002px;
+    line-height: 16.500023px;
+}
+.line-clamp:hover
+{
+    cursor: pointer ;
+}
+.price-product
+{
+    height:auto;
+    text-align: center;
+    color:hsl(24, 71%, 15%);
+    font-size:15.00002px;
+    line-height: 16.500023px;
+}
+footer
+{
+    background-color:black;
+    width:auto;
+    height:auto;
+}
+.nav-tabs-1{
+    margin-top: 100px;;
+    text-decoration: none;
+    text-align: center;
+    list-style: none;
+    border-bottom:solid 0px;
+}
+.nav-tabs{
+    margin-top: 100px;;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+    border-bottom:solid 0px;
+    
+}
+.active a {
+    color:white;   
+    font-size: 11px;
+    line-height:15.4px;
+}
+.img-responsive
+{
+    width:100px;
+    height:38px;
+}
+.line{
+    border-top:solid 1.5px;
+}
