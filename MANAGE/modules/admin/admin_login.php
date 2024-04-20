@@ -6,6 +6,7 @@ if(isLoginAdmin()){
   redirect('?module=admin&action=admin_profile');
 }
 
+
 if(isPost()){
   $filterAll = filter();
   if(!empty(trim($filterAll['email'])) && !empty(trim($filterAll['password']))){
@@ -28,6 +29,7 @@ if(isPost()){
         $insertStatus = insert('tokenloginadmin', $dataInsertAdmin);
         if($insertStatus){
             setSession('tokenLoginAdmin', $tokenLoginAdmin);
+            setSession('admin_id', $admin_id);
             redirect('?module=admin&action=admin_profile');
         }else{
             setFlashData('smg', 'Không thể đăng nhập vui lòng thử lại sau');
@@ -152,3 +154,4 @@ $smg_type = getFlashData('smg_type');
 </body>
 
 </html>
+<?php

@@ -5,6 +5,9 @@ if (!defined('_CODE')){
 if(!isLoginAdmin()){
     redirect('?module=admin&action=admin_login');
 }
+$adminID = getSession('admin_id');
+
+$adminInfo = getRaw("SELECT * FROM admin WHERE id = '$adminID'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,12 +63,23 @@ if(!isLoginAdmin()){
     <div class="container">
       <div class="content-profile">
         <div class="image-admin">
-          <img src="" alt="" class="image-fluid">
+          <img src="templates\img\ảnh admin.jpg" alt="" class="image-fluid">
         </div>
         <div class="content-info">
-            <p>Name: <b>Lê Tấn Đạt</b></p>
-            <p>Birthday: <b>16/07/2004</b></p>
-            <p>MSSV: <b>3122411038</b></p>
+        <?php
+            if(!empty($adminInfo)):
+                foreach($adminInfo as $item):
+        ?>
+            <p>Name: <b><?php echo $item['admin_name']; ?></b></p>
+            <p>Birthday: <b><?php echo $item['birthday']; ?></b></p>
+            <p>Email: <b><?php echo $item['email']; ?></b></p>
+            <p>Phone: <b><?php echo $item['phone']; ?></b></p>
+            <p>Địa chỉ: <b><?php echo $item['address']; ?></b></p>
+            <p>MSSV: <b><?php echo $item['mssv']; ?></b></p>
+        <?php
+              endforeach;
+            endif;
+        ?>
         </div>
       </div>
     </div>
@@ -76,3 +90,7 @@ if(!isLoginAdmin()){
 </body>
 
 </html>
+<?php
+// echo '<pre>';
+// print_r($adminInfo);
+// echo '</pre>';
