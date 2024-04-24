@@ -63,7 +63,7 @@ $adminInfo = getRaw("SELECT * FROM admin WHERE id = '$adminID'");
     <div class="container">
       <div class="content-profile">
         <div class="image-admin">
-          <img src="" alt="" class="image-fluid">
+          <img src="ádsadasdf" alt="" class="image-fluid">
         </div>
         <div class="content-info">
         <?php
