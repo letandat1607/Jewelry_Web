@@ -284,31 +284,11 @@ if(!empty($userInfo)){
                         endforeach;
                     endif;    
                 ?>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
-                <a href="?module=admin&action=list_user" class="page-item">1</a>
             </tbody>
         </table>
+        <div class="page-number" style="">
+            <a href="?module=admin&action=list_user" style="" class="page-item">1</a>
+        </div>
     </div>
   </section>
 
