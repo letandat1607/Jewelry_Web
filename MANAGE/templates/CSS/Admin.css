@@ -14,11 +14,16 @@
     justify-content: flex-end;
     margin-right: 40px;
 }
-.page-item{
+.page-number .page-item{
     color: black;
-    border: solid 1px;
+    border: black solid 1px;
     padding: 0px 7px;
-    font-size: 20px
+    font-size: 20px;
+    margin: 3px;
+}
+.page-number .local-page{
+    background-color: black;
+    color: white;
 }
 @media (min-width: 760px) {
     .content {

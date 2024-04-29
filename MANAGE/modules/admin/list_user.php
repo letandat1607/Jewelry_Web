@@ -16,8 +16,11 @@ if(!empty($filterAll['id'])){
 }
 
 $item_page = 5;
-$local_page = 1;
+$local_page = !empty($filterAll['page'])?$filterAll['page']:1;
 $offset = ($local_page - 1) * $item_page;
+$totalItems = getRows("SELECT id FROM users");
+$totalPages = ceil($totalItems / $item_page);
+
 $listUsers = getRaw("SELECT * FROM users ORDER BY update_date DESC LIMIT ".$item_page." OFFSET ".$offset."");
 if(isPost()){
     $filterAll = filter();
@@ -121,10 +124,10 @@ if(!empty($userInfo)){
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manage Order</title>
-  <link rel="stylesheet" href="templates/CSS/Sidebar.css">
-  <link rel="stylesheet" href="templates/CSS/Admin.css">
+  <link rel="stylesheet" href="templates/CSS/Sidebar.css?v= <?php echo time(); ?>">
+  <link rel="stylesheet" href="templates/CSS/Admin.css?v= <?php echo time(); ?>">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="templates/CSS/Manage Customer.css">
+  <link rel="stylesheet" href="templates/CSS/Manage Customer.css?v= <?php echo time(); ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -286,8 +289,33 @@ if(!empty($userInfo)){
                 ?>
             </tbody>
         </table>
-        <div class="page-number" style="">
-            <a href="?module=admin&action=list_user" style="" class="page-item">1</a>
+        <div class="page-number" >
+            <?php
+                if ($local_page > 3){
+                    ?>
+                    <a href="?module=admin&action=list_user&page=1"  class="page-item">First page</a>
+                    <?php                    
+                }
+                for($num = 1; $num <= $totalPages; $num++){
+                    if($num != $local_page){
+                        if($num < $local_page + 3 && $num > $local_page - 3){
+                            ?>
+                            <a href="?module=admin&action=list_user&page=<?php echo $num; ?>"  class="page-item"><?php echo $num; ?></a>
+                            <?php
+                        }   
+                    }else{
+                        ?>
+                        <a href="?module=admin&action=list_user&page=<?php echo $num; ?>"  class="page-item local-page"><?php echo $num; ?></a>
+                        <?php
+                    }
+                }
+                if ($local_page < $totalPages - 3){
+                    ?>
+                    <a href="?module=admin&action=list_user&page=<?php echo $totalPages ?>"  class="page-item">Last page</a>
+                    <?php                    
+                }
+            ?>
+            
         </div>
     </div>
   </section>
