@@ -15,7 +15,10 @@ if(!empty($filterAll['id'])){
     }
 }
 
-$listUsers = getRaw("SELECT * FROM users ORDER BY update_date DESC");
+$item_page = 5;
+$local_page = 1;
+$offset = ($local_page - 1) * $item_page;
+$listUsers = getRaw("SELECT * FROM users ORDER BY update_date DESC LIMIT ".$item_page." OFFSET ".$offset."");
 if(isPost()){
     $filterAll = filter();
     $errors = [];
@@ -106,6 +109,7 @@ $userInfo = getFlashData('user_detail');
 if(!empty($userInfo)){
     $old = $userInfo;
 }
+
 
 ?>
 
@@ -280,6 +284,29 @@ if(!empty($userInfo)){
                         endforeach;
                     endif;    
                 ?>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
+                <a href="?module=admin&action=list_user" class="page-item">1</a>
             </tbody>
         </table>
     </div>
@@ -295,5 +322,3 @@ if(!empty($userInfo)){
 
 </html>
 <?php 
-
-
