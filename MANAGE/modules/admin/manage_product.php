@@ -14,7 +14,14 @@ if(!empty($filterAll['id'])){
         setFlashData('product_detail', $productDetail);
     }
 }
-$listProducts = getRaw("SELECT * FROM products");
+
+$item_page = 10;
+$local_page = !empty($filterAll['page'])?$filterAll['page']:1;
+$offset = ($local_page - 1) * $item_page;
+$totalItems = getRows("SELECT id FROM products");
+$totalPages = ceil($totalItems / $item_page);
+
+$listProducts = getRaw("SELECT * FROM products LIMIT ".$item_page." OFFSET ".$offset."");
 if(isPost()){
     $filterAll = filter();
     $errors = [];
@@ -235,6 +242,33 @@ if(!empty($productInfo)){
                         ?>
                 </tbody>
             </table>
+            <div class="page-number" >
+            <?php
+                if ($local_page > 3){
+                    ?>
+                    <a href="?module=admin&action=manage_product&page=1"  class="page-item">First page</a>
+                    <?php                    
+                }
+                for($num = 1; $num <= $totalPages; $num++){
+                    if($num != $local_page){
+                        if($num < $local_page + 3 && $num > $local_page - 3){
+                            ?>
+                            <a href="?module=admin&action=manage_product&page=<?php echo $num; ?>"  class="page-item"><?php echo $num; ?></a>
+                            <?php
+                        }   
+                    }else{
+                        ?>
+                        <a href="?module=admin&action=manage_product&page=<?php echo $num; ?>"  class="page-item local-page"><?php echo $num; ?></a>
+                        <?php
+                    }
+                }
+                if ($local_page < $totalPages - 3){
+                    ?>
+                    <a href="?module=admin&action=manage_product&page=<?php echo $totalPages ?>"  class="page-item">Last page</a>
+                    <?php                    
+                }
+            ?> 
+        </div>
         </div>
     </div>
   </section>
