@@ -14,4 +14,4 @@ if(!empty($filterAll['id'])){
         }
     }
 }
-redirect('?module=admin&action=list_user');
+redirect('?module=admin&action=manage_user');

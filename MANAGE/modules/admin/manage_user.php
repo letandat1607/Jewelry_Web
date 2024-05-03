@@ -90,18 +90,18 @@ if(isPost()){
         $condition = "id = $userID";
         $updateStatus = update('users', $updateData, $condition);
         if($updateStatus){
-            redirect('?module=admin&action=list_user&id='.$userID.'');
+            redirect('?module=admin&action=manage_user&id='.$userID.'');
         }else{
             $insertStatus = insert('users', $dataInsert);
             if($insertStatus){
-                redirect('?module=admin&action=list_user');
+                redirect('?module=admin&action=manage_user');
             }
         }
-        redirect('?module=admin&action=list_user&id='.$userID.'');
+        redirect('?module=admin&action=manage_user&id='.$userID.'');
     }else{
         setFlashData('errors', $errors);
         setFlashData('old', $filterAll);
-        redirect('?module=admin&action=list_user&id='.$userID.'');
+        redirect('?module=admin&action=manage_user&id='.$userID.'');
 
     }
 }
@@ -177,10 +177,10 @@ if(!empty($userInfo)){
                 <a href="?module=admin&action=manage_product">Quản lý sản phẩm</a>
             </div>
             <div class="col-4 customer-content">
-                <a href="Manage Customer.html">Quản lý khách hàng</a>
+                <a href="?module=admin&action=manage_user">Quản lý khách hàng</a>
             </div>
             <div class="col-4 order-content">
-                <a href="Manage Order.html">Quản lý đơn hàng</a>
+                <a href="?module=admin&action=manage_order">Quản lý đơn hàng</a>
             </div>
         </div>
         <form  action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" id="registerForm">
@@ -246,7 +246,7 @@ if(!empty($userInfo)){
                     <button id="save" >Submit</button>
                     <input type="hidden" name="id" value="<?php echo $userID ?>"> 
                     <button id="update" style="display: block;" >Update</button>
-                    <a href="?module=admin&action=list_user" class="btn btn-dark btn-sm mt-2"><i class="fa-solid fa-rotate-right"></i></a>
+                    <a href="?module=admin&action=manage_user" class="btn btn-dark btn-sm mt-2"><i class="fa-solid fa-rotate-right"></i></a>
                 </div>
             </div>
         </form>
@@ -280,7 +280,7 @@ if(!empty($userInfo)){
                 <td><?php echo $item['phone_number']; ?></td>
                 <td><?php echo $item['password']; ?></td>
                 <td><?php echo $item['status'] == 1 ? '<button class ="btn btn-success btn-sm">Open</button>' : '<button class ="btn btn-danger btn-sm">Lock</button>'; ?></td>
-                <td><a href="?module=admin&action=list_user&id=<?php echo $item['id']; ?>" id="edit" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td><a href="?module=admin&action=manage_user&id=<?php echo $item['id']; ?>" id="edit" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
                 <td><a href="?module=admin&action=delete_user&id=<?php echo $item['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete?')"><i class="fa-solid fa-trash"></i></a></td>
             </tr>
                 <?php 
@@ -293,25 +293,25 @@ if(!empty($userInfo)){
             <?php
                 if ($local_page > 3){
                     ?>
-                    <a href="?module=admin&action=list_user&page=1"  class="page-item">First page</a>
+                    <a href="?module=admin&action=manage_user&page=1"  class="page-item">First page</a>
                     <?php                    
                 }
                 for($num = 1; $num <= $totalPages; $num++){
                     if($num != $local_page){
                         if($num < $local_page + 3 && $num > $local_page - 3){
                             ?>
-                            <a href="?module=admin&action=list_user&page=<?php echo $num; ?>"  class="page-item"><?php echo $num; ?></a>
+                            <a href="?module=admin&action=manage_user&page=<?php echo $num; ?>"  class="page-item"><?php echo $num; ?></a>
                             <?php
                         }   
                     }else{
                         ?>
-                        <a href="?module=admin&action=list_user&page=<?php echo $num; ?>"  class="page-item local-page"><?php echo $num; ?></a>
+                        <a href="?module=admin&action=manage_user&page=<?php echo $num; ?>"  class="page-item local-page"><?php echo $num; ?></a>
                         <?php
                     }
                 }
                 if ($local_page < $totalPages - 3){
                     ?>
-                    <a href="?module=admin&action=list_user&page=<?php echo $totalPages ?>"  class="page-item">Last page</a>
+                    <a href="?module=admin&action=manage_user&page=<?php echo $totalPages ?>"  class="page-item">Last page</a>
                     <?php                    
                 }
             ?>

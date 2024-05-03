@@ -145,7 +145,7 @@ if(!empty($productInfo)){
                 <a href="#">Quản lý sản phẩm</a>
             </div>
             <div class="col-4 customer-content">
-                <a href="?module=admin&action=list_user">Quản lý khách hàng</a>
+                <a href="?module=admin&action=manage_user">Quản lý khách hàng</a>
             </div>
             <div class="col-4 order-content">
                 <a href="Manage Order.html">Quản lý đơn hàng</a>
