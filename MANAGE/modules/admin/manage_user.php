@@ -164,7 +164,7 @@ if(!empty($userInfo)){
         <div class="row container">
             <div class="col-4"></div>
             <div class="col-6">
-               <h2 class="nav-item">Quan ly he thong</h2> 
+               <h2 class="nav-item">Quản lý khách hàng</h2> 
             </div>
             <div class="col-2"></div>
         </div>

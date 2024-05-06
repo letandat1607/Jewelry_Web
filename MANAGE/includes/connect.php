@@ -1,6 +1,6 @@
 <?php
 const _HOST = 'localhost';
-const _DB = 'manage';
+const _DB = 'jewelry';
 const _USER = 'root';
 const _PASS = '';
 

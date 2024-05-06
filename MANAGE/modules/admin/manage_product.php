@@ -120,7 +120,7 @@ if(!empty($productInfo)){
                 <a href="?module=admin&action=manage_product"><ion-icon name="pie-chart"></ion-icon>  Manage</a>
             </li>
             <li>
-                <a href="Revenue Statistics.html"><ion-icon name="bar-chart"></ion-icon> Business</a>
+                <a href="?module=admin&action=manage_business"><ion-icon name="bar-chart"></ion-icon> Business</a>
             </li>
             <li>
                 <a href="?module=admin&action=admin_logout"><ion-icon name="log-out-outline"></ion-icon> Log out</a>
@@ -132,7 +132,7 @@ if(!empty($productInfo)){
         <div class="row container">
             <div class="col-4"></div>
             <div class="col-6">
-               <h2 class="nav-item">Quan ly he thong</h2> 
+               <h2 class="nav-item">quản lý sản phẩm</h2> 
             </div>
             <div class="col-2"></div>
         </div>
@@ -142,13 +142,13 @@ if(!empty($productInfo)){
     <div class="container">
         <div class="row">
             <div class="col-4 product-content">
-                <a href="#">Quản lý sản phẩm</a>
+                <a href="?module=admin&action=manage_product">Quản lý sản phẩm</a>
             </div>
             <div class="col-4 customer-content">
                 <a href="?module=admin&action=manage_user">Quản lý khách hàng</a>
             </div>
             <div class="col-4 order-content">
-                <a href="Manage Order.html">Quản lý đơn hàng</a>
+                <a href="?module=admin&action=manage_order">Quản lý đơn hàng</a>
             </div>
         </div>
         <div class="content-manage">

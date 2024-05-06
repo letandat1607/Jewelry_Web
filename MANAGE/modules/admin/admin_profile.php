@@ -41,7 +41,7 @@ $adminInfo = getRaw("SELECT * FROM admin WHERE id = '$adminID'");
                 <a href="?module=admin&action=manage_product"><ion-icon name="pie-chart"></ion-icon>  Manage</a>
             </li>
             <li>
-                <a href="Revenue Statistics.html"><ion-icon name="bar-chart"></ion-icon> Business</a>
+                <a href="?module=admin&action=manage_business"><ion-icon name="bar-chart"></ion-icon> Business</a>
             </li>
             <li>
                 <a href="?module=admin&action=admin_logout"><ion-icon name="log-out-outline"></ion-icon> Log out</a>
@@ -61,15 +61,15 @@ $adminInfo = getRaw("SELECT * FROM admin WHERE id = '$adminID'");
   </header>
   <section class="content">
     <div class="container">
+    <?php
+      if(!empty($adminInfo)):
+          foreach($adminInfo as $item):
+    ?>
       <div class="content-profile">
         <div class="image-admin">
-          <img src="" alt="" class="image-fluid">
+          <img src="<?php echo $item['picture']; ?>" class="image-fluid">
         </div>
         <div class="content-info">
-        <?php
-            if(!empty($adminInfo)):
-                foreach($adminInfo as $item):
-        ?>
             <p>Name: <b><?php echo $item['admin_name']; ?></b></p>
             <p>Birthday: <b><?php echo $item['birthday']; ?></b></p>
             <p>Email: <b><?php echo $item['email']; ?></b></p>

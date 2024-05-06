@@ -16,3 +16,7 @@
     font-size: large;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.khung img{
+    width: 200px;
+    height: 200px;
+}

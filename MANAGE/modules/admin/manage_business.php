@@ -5,15 +5,6 @@ if (!defined('_CODE')){
 if(!isLoginAdmin()){
     redirect('?module=admin&action=admin_login');
 }
-$filterAll = filter();
-if(!empty($filterAll['id'])){
-    $orderID = $filterAll['id'];
-    $orderInfo = oneRaw("SELECT * FROM orders WHERE id = $orderID");
-    if(!empty($orderInfo)){
-        setFlashData('order_info', $orderInfo);
-    }
-}
-setFlashData('old', $filterAll);
 $conditionSearch='';
 if(!empty($filterAll['filter_status'])){
     $statusFilter = $filterAll['filter_status'];
@@ -35,26 +26,8 @@ if(!empty($filterAll['filter_address_province'])){
     $provinceFilter = $filterAll['filter_address_province'];
     $conditionSearch .= " AND province= '$provinceFilter'";
 }
-$listOrders = getRaw("SELECT * FROM orders WHERE 1=1 $conditionSearch");
+$listOrders = getRaw("SELECT * FROM orders WHERE 1=1 $conditionSearch ORDER BY total_price DESC ");
 
-if(isPost()){
-    $filterAll = filter();
-    if(!empty($filterAll['status'])){
-        $dataUpdate = [
-            'status' => $filterAll['status']
-        ];
-        $condition = "id= $orderID";
-        $updateStatus = update('orders', $dataUpdate, $condition);
-        if($updateStatus){
-            redirect('?module=admin&action=manage_order&id='.$orderID.'');
-        }
-    }
-}
-$old = getFlashData('old');
-$orderInfoOld = getFlashData('order_info');
-if(!empty($orderInfo)){
-    $old = $orderInfoOld;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,57 +76,13 @@ if(!empty($orderInfo)){
         <div class="row container">
             <div class="col-4"></div>
             <div class="col-6">
-               <h2 class="nav-item">Quản lý đơn hàng</h2> 
+               <h2 class="nav-item">Quan ly he thong</h2> 
             </div>
             <div class="col-2"></div>
         </div>
     </nav>
   </header>
   <section class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-4 product-content">
-                <a href="?module=admin&action=manage_product">Quản lý sản phẩm</a>
-            </div>
-            <div class="col-4 customer-content">
-                <a href="?module=admin&action=manage_user">Quản lý khách hàng</a>
-            </div>
-            <div class="col-4 order-content">
-                <a href="?module=admin&action=manage_order">Quản lý đơn hàng</a>
-            </div>
-        </div>
-        <form method="post">
-            <div class="form">
-                <?php  
-                    if(!empty($orderInfo)){
-                        $userID = $orderInfo['user_id'];
-                        $userName = oneRaw("SELECT * FROM users WHERE id= $userID");
-                ?>
-                <div class="mt-3">
-                    <p>Khách hàng: <b><?php echo $userName['first_name'].' '.$userName['last_name']; ?></b></p>
-                    <p>Địa chỉ: <b><?php echo $orderInfo['customer_address'].', P.'.$orderInfo['ward'].', Quận '.$orderInfo['district'].', '.$orderInfo['province'];?> </b></p>
-                    <p>Ngày mua: <b><?php echo $orderInfo['orders_date']; ?></b></p>
-                    <p>Tổng tiền: <b><?php echo $orderInfo['total_price']; ?></b></p>
-
-                </div>
-                <div class="form-group mt-2">
-                    <label for="">Status: </label>
-                    <select name="status" id="" class="form-input">
-                        <option value="da xac nhan" <?php echo (old('status', $old) == 'da xac nhan' ) ? 'selected'  : false; ?>>Đã xác nhận</option>
-                        <option value="chua xac nhan" <?php echo (old('status', $old) == 'chua xac nhan') ?  'selected' : false; ?>>Chưa xác nhận</option>    
-                        <option value="da giao thanh cong" <?php echo (old('status', $old) == 'da giao thanh cong') ?  'selected' : false; ?>>Đã giao thành công</option>    
-                    </select>
-                </div>
-                <div>
-                    <input type="hidden" name="id" value="<?php echo $orderID ?>"> 
-                    <button id="update"  style="display: block;" >Update</button>
-                    <a href="?module=admin&action=manage_order" class="btn btn-dark btn-sm mt-2"><i class="fa-solid fa-rotate-right"></i></a>
-                </div>
-                <?php
-                    }
-                ?>
-            </div>
-        </form>
         <div class="filter-order">
             <div class="container">
                 <ul class="filter-down">
@@ -194,18 +123,20 @@ if(!empty($orderInfo)){
                     <th>Date Buy</th>
                     <th>Price</th>
                     <th>Status</th>
-                    <th width="5%">Edit</th>
                     <th>Detail</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                    $toltalPrice = 0;
                     if(!empty($listOrders)){
                         $count = 0;
                         foreach($listOrders as $item){
                             $count++;
-                            $userID = $item['user_id'];
-                            $userName = oneRaw("SELECT * FROM users WHERE id= $userID");
+                            if($count <= 5){
+                                $userID = $item['user_id'];
+                                $userName = oneRaw("SELECT * FROM users WHERE id= $userID");
+                                $toltalPrice += $item['total_price'];
                 ?>
                 <tr>
                     <td><?php echo $count; ?></td>
@@ -214,14 +145,15 @@ if(!empty($orderInfo)){
                     <td><?php echo $item['orders_date']; ?></td>
                     <td><?php echo $item['total_price']; ?></td>
                     <td><?php echo $item['status']; ?></td>
-                    <td><a href="?module=admin&action=manage_order&id=<?php echo $item['id']; ?>" id="edit" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
                     <td><a href="?module=admin&action=order_detail&id=<?php echo $item['id']; ?>">Chi tiết đơn hàng</a></td>
                 </tr>
                 <?php
+                            }
                         }
                     }
                 ?>
-            </tbody>
+                <h1>Total: <?php echo $toltalPrice; ?></h1>
+            </tbody>    
         </table>
     </div>
   </section>
