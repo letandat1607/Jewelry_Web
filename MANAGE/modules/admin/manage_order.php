@@ -160,7 +160,7 @@ if(!empty($orderInfo)){
                     <td><?php echo $item['total_price']; ?></td>
                     <td><?php echo $item['status']; ?></td>
                     <td><a href="?module=admin&action=manage_order&id=<?php echo $item['id']; ?>" id="edit" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                    <td>Chi tiết</td>
+                    <td><a href="?module=admin&action=order_detail&only_id=<?php echo $item['only_id']; ?>">Chi tiết đơn hàng</a></td>
                 </tr>
                 <?php
                         }
