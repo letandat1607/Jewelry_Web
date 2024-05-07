@@ -152,7 +152,7 @@ if(!empty($userInfo)){
                 <a href="?module=admin&action=manage_product"><ion-icon name="pie-chart"></ion-icon>  Manage</a>
             </li>
             <li>
-                <a href="Revenue Statistics.html"><ion-icon name="bar-chart"></ion-icon> Business</a>
+                <a href="?module=admin&action=manage_business"><ion-icon name="bar-chart"></ion-icon> Business</a>
             </li>
             <li>
                 <a href="?module=admin&action=admin_logout"><ion-icon name="log-out-outline"></ion-icon> Log out</a>
