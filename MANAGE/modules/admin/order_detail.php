@@ -37,16 +37,16 @@ if(!empty($filterAll['id'])){
         <div class="sidebar">
             <ul>
             <li>
-                <a href="Admin Profile.html"><ion-icon name="person-circle"></ion-icon> Account</a>
+                <a href="?module=admin&action=admin_profile"><ion-icon name="person-circle"></ion-icon> Account</a>
             </li>
             <li>
-                <a href="Manage Product.html"><ion-icon name="pie-chart"></ion-icon>  Manage</a>
+                <a href="?module=admin&action=manage_product"><ion-icon name="pie-chart"></ion-icon>  Manage</a>
             </li>
             <li>
-                <a href="Revenue Statistics.html"><ion-icon name="bar-chart"></ion-icon> Business</a>
+                <a href="?module=admin&action=manage_business"><ion-icon name="bar-chart"></ion-icon> Business</a>
             </li>
             <li>
-                <a href="đăng nhập.html"><ion-icon name="log-out-outline"></ion-icon> Log out</a>
+                <a href="?module=admin&action=admin_logout"><ion-icon name="log-out-outline"></ion-icon> Log out</a>
             </li>
             </ul>
         </div>
