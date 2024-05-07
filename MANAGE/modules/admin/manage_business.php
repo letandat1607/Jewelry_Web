@@ -6,26 +6,15 @@ if(!isLoginAdmin()){
     redirect('?module=admin&action=admin_login');
 }
 $conditionSearch='';
-if(!empty($filterAll['filter_status'])){
-    $statusFilter = $filterAll['filter_status'];
-    $conditionSearch .= " AND status= '$statusFilter'";
-}
 if(!empty($filterAll['filter_date'])){
     $dateFilter = $filterAll['filter_date'];
-    $conditionSearch .= " AND orders_date= '$dateFilter'";
+    $conditionSearch .= " AND getdate(orders_date) >= '$dateFilter'";
 }
-if(!empty($filterAll['filter_address_ward'])){
-    $wardFilter = $filterAll['filter_address_ward'];
-    $conditionSearch .= " AND ward= '$wardFilter'";
+if(!empty($filterAll['filter_date_end'])){
+    $dateFilterEnd = $filterAll['filter_date_end'];
+    $conditionSearch .= " AND getdate(orders_date) <= '$dateFilterEnd'";
 }
-if(!empty($filterAll['filter_address_district'])){
-    $districtFilter = $filterAll['filter_address_district'];
-    $conditionSearch .= " AND district= '$districtFilter'";
-}
-if(!empty($filterAll['filter_address_province'])){
-    $provinceFilter = $filterAll['filter_address_province'];
-    $conditionSearch .= " AND province= '$provinceFilter'";
-}
+
 $listOrders = getRaw("SELECT * FROM orders WHERE 1=1 $conditionSearch ORDER BY total_price DESC ");
 
 ?>
@@ -90,22 +79,12 @@ $listOrders = getRaw("SELECT * FROM orders WHERE 1=1 $conditionSearch ORDER BY t
                         <div class="filter-content " id="filter-content" >
                             <ul>
                             <form action="" method="post">
-                                <li class="filter-status">Lọc theo tình trạng <i class="fa-solid fa-chevron-down"></i>
-                                        <select name="filter_status" id="">
-                                            <option value="">--None--</option>
-                                            <option value="chua xac nhan">Chưa xác nhận</option>
-                                            <option value="da xac nhan">Đã xác nhận</option>
-                                            <option value="da giao thanh cong">Đã giao thành công</option>
-                                        </select>
-                                </li>
                                 <li class="filter-date">Lọc theo thời gian giao hàng <i class="fa-solid fa-chevron-down"></i>
-                                        <input type="text" name="filter_date" placeholder="Nhập thời gian">
+                                        <input type="text" name="filter_date" placeholder="Nhập thời gian bắt đầu">
                                 </li >
-                                <li class="filter-address">Lọc theo địa chỉ <i class="fa-solid fa-chevron-down"></i>
-                                        <input type="text" name="filter_address_ward" placeholder="Nhập phường/xã">
-                                        <input type="text" name="filter_address_district" placeholder="Nhập quận/huyện">
-                                        <input type="text" name="filter_address_province" placeholder="Nhập tỉnh/thành phố">
-                                </li>
+                                <li class="filter-date">Lọc theo thời gian giao hàng <i class="fa-solid fa-chevron-down"></i>
+                                        <input type="text" name="filter_date_end" placeholder="Nhập thời gian kết thúc">
+                                </li >
                                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                             </ul>
