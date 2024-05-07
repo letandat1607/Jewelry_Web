@@ -21,7 +21,7 @@ if(!empty($filterAll['filter_status'])){
 }
 if(!empty($filterAll['filter_date'])){
     $dateFilter = $filterAll['filter_date'];
-    $conditionSearch .= " AND orders_date= '$dateFilter'";
+    $conditionSearch .= " AND DATE(orders_date)= '$dateFilter'";
 }
 if(!empty($filterAll['filter_address_ward'])){
     $wardFilter = $filterAll['filter_address_ward'];

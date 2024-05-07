@@ -5,17 +5,32 @@ if (!defined('_CODE')){
 if(!isLoginAdmin()){
     redirect('?module=admin&action=admin_login');
 }
-$conditionSearch='';
-if(!empty($filterAll['filter_date'])){
+$filterAll = filter();
+$conditionSearch = '';
+if (!empty($filterAll['filter_date']) && !empty($filterAll['filter_date_end'])) {
     $dateFilter = $filterAll['filter_date'];
-    $conditionSearch .= " AND getdate(orders_date) >= '$dateFilter'";
-}
-if(!empty($filterAll['filter_date_end'])){
     $dateFilterEnd = $filterAll['filter_date_end'];
-    $conditionSearch .= " AND getdate(orders_date) <= '$dateFilterEnd'";
+
+    // Chuyển đổi ngày nhập từ form thành định dạng Y-m-d
+    $dateFilter = date("Y-m-d", strtotime($dateFilter));
+    $dateFilterEnd = date("Y-m-d", strtotime($dateFilterEnd));
+
+    // Thêm điều kiện lọc từ ngày đến ngày
+    $conditionSearch .= " AND DATE(orders_date) BETWEEN '$dateFilter' AND '$dateFilterEnd'";
+} elseif (!empty($filterAll['filter_date'])) {
+    // Nếu chỉ có ngày bắt đầu được chọn
+    $dateFilter = $filterAll['filter_date'];
+    $dateFilter = date("Y-m-d", strtotime($dateFilter));
+    $conditionSearch .= " AND DATE(orders_date) >= '$dateFilter'";
+} elseif (!empty($filterAll['filter_date_end'])) {
+    // Nếu chỉ có ngày kết thúc được chọn
+    $dateFilterEnd = $filterAll['filter_date_end'];
+    $dateFilterEnd = date("Y-m-d", strtotime($dateFilterEnd));
+    $conditionSearch .= " AND DATE(orders_date) <= '$dateFilterEnd'";
 }
 
 $listOrders = getRaw("SELECT * FROM orders WHERE 1=1 $conditionSearch ORDER BY total_price DESC ");
+
 
 ?>
 <!DOCTYPE html>
@@ -80,13 +95,14 @@ $listOrders = getRaw("SELECT * FROM orders WHERE 1=1 $conditionSearch ORDER BY t
                             <ul>
                             <form action="" method="post">
                                 <li class="filter-date">Lọc theo thời gian giao hàng <i class="fa-solid fa-chevron-down"></i>
-                                        <input type="text" name="filter_date" placeholder="Nhập thời gian bắt đầu">
+                                    <input type="text" name="filter_date" placeholder="Nhập thời gian bắt đầu">
                                 </li >
                                 <li class="filter-date">Lọc theo thời gian giao hàng <i class="fa-solid fa-chevron-down"></i>
-                                        <input type="text" name="filter_date_end" placeholder="Nhập thời gian kết thúc">
+                                    <input type="text" name="filter_date_end" placeholder="Nhập thời gian kết thúc">
                                 </li >
                                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </form>
+
                             </ul>
                         </div>
                     </li>  
