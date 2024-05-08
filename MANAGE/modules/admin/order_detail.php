@@ -65,6 +65,7 @@ if(!empty($filterAll['id'])){
     foreach($orderDetail as $item){
         $productID = $item['id_product'];
         $productDetail = oneRaw("SELECT * FROM products WHERE id='$productID'");
+        $totalPrice = $productDetail['gia_tien']*$item['so_luong'];
     ?>
   <section class="contentt">
     <div class="container khung">
@@ -80,7 +81,7 @@ if(!empty($filterAll['id'])){
                         </div>
                         <div class="col-md-5 col-lg-5 col-sm-5" style="font-size: 15px; margin-top: 25px; ">
                         <p>Tên Sản Phẩm: <b><?php echo $productDetail['ten_san_pham']; ?></b></p>
-                        <p class="ml-5"> Giá Tiền: <b><?php echo $productDetail['gia_tien']; ?></b></p>
+                        <p class="ml-5"> Giá Tiền: <b><?php echo $totalPrice; ?></b></p>
                         <p class="ml-1"> Số Lượng: <b><?php echo $item['so_luong']; ?></b></p>
                         </div>
                     </div>
